@@ -1,0 +1,299 @@
+/* =========================================================
+   Word art · emoji / colour / number / preposition / object
+   ========================================================= */
+.word-art {
+  --art-size: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  isolation: isolate;
+}
+
+.word-art__halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--art-size) * 1.35);
+  height: calc(var(--art-size) * 1.35);
+  max-width: 92%;
+  max-height: 92%;
+  border: 2px dashed color-mix(in srgb, var(--pack-color, var(--purple)) 24%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 48%, rgba(255, 255, 255, 0.45) 49% 68%, transparent 69%);
+  transform: translate(-50%, -50%);
+}
+
+.word-art::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  width: calc(var(--art-size) * 0.82);
+  height: calc(var(--art-size) * 0.1);
+  border-radius: 50%;
+  background: rgba(36, 48, 74, 0.12);
+  filter: blur(3px);
+  transform: translateX(-50%);
+}
+
+.word-art__emoji {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji', sans-serif;
+  font-size: var(--art-size);
+  line-height: 1;
+  filter: drop-shadow(0 8px 0 rgba(36, 48, 74, 0.12));
+  transform: rotate(-3deg);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.word-art__swatch,
+.word-art__preposition,
+.word-art__object {
+  position: relative;
+  z-index: 2;
+  width: calc(var(--art-size) * 1.16);
+  height: auto;
+  filter: drop-shadow(0 7px 0 rgba(36, 48, 74, 0.1));
+}
+
+.word-art__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 94%;
+  color: var(--pack-color, var(--purple));
+  font-family: var(--font-learning);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-align: center;
+  transform: rotate(-2deg);
+}
+
+.word-art__text-en {
+  max-width: 100%;
+  font-size: calc(var(--art-size) * 0.36);
+  font-weight: 700;
+  text-shadow:
+    3px 3px 0 #fff,
+    -1px -1px 0 #fff;
+  overflow-wrap: anywhere;
+}
+
+.word-art__text-en.is-long {
+  font-size: calc(var(--art-size) * 0.27);
+}
+
+.word-art__text-meaning {
+  max-width: 100%;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: calc(var(--art-size) * 0.22);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-shadow:
+    2px 2px 0 #fff,
+    -1px -1px 0 #fff;
+}
+
+.word-art__number-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+
+.word-art__number {
+  font-family: var(--font-learning);
+  font-size: calc(var(--art-size) * 1.12);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  text-shadow:
+    3px 3px 0 #fff,
+    -1px -1px 0 #fff;
+  transform: rotate(-3deg);
+}
+
+.word-art__number.is-wide {
+  font-size: calc(var(--art-size) * 0.96);
+}
+
+.word-art__dots {
+  display: grid;
+  grid-template-columns: repeat(var(--dot-cols, 10), clamp(4px, calc(var(--art-size) * 0.035), 8px));
+  justify-content: center;
+  gap: clamp(2px, calc(var(--art-size) * 0.014), 4px);
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px 8px;
+  border: 2px dashed rgba(36, 48, 74, 0.2);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.word-art__dots i {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--pack-color, var(--purple));
+  opacity: 0.72;
+}
+
+.word-art__dot {
+  position: absolute;
+  z-index: 1;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pack-color, var(--purple));
+  opacity: 0.3;
+}
+
+.word-art__dot--one {
+  top: 18%;
+  left: 14%;
+}
+
+.word-art__dot--two {
+  right: 13%;
+  bottom: 20%;
+  width: 4px;
+  height: 4px;
+  background: var(--coral);
+}
+
+.word-art__spark {
+  position: absolute;
+  z-index: 1;
+  color: var(--yellow);
+  font-size: calc(var(--art-size) * 0.15);
+  line-height: 1;
+  text-shadow: 0 2px 0 var(--ink);
+}
+
+.word-art__spark--one {
+  top: 13%;
+  right: 15%;
+  transform: rotate(12deg);
+}
+
+.word-art__spark--two {
+  bottom: 16%;
+  left: 16%;
+  color: var(--pink);
+  font-size: calc(var(--art-size) * 0.1);
+  transform: rotate(-10deg);
+}
+
+/* Context sizes */
+.pack-card__art .word-art {
+  --art-size: 76px;
+}
+
+.word-card__art .word-art {
+  --art-size: 90px;
+}
+
+.word-modal__visual .word-art {
+  --art-size: 165px;
+}
+
+.discover-step__art .word-art {
+  --art-size: 230px;
+}
+
+.listen-option__art .word-art {
+  --art-size: 108px;
+}
+
+.spell-step__art .word-art {
+  --art-size: 178px;
+}
+
+.result-word-card__art .word-art {
+  --art-size: 58px;
+}
+
+.word-card:hover .word-art__emoji,
+.pack-card:hover .word-art__emoji {
+  transform: rotate(3deg) scale(1.06);
+}
+
+@media (max-width: 900px) {
+  .word-modal__visual .word-art {
+    --art-size: 140px;
+  }
+
+  .discover-step__art .word-art {
+    --art-size: 190px;
+  }
+
+  .spell-step__art .word-art {
+    --art-size: 150px;
+  }
+
+  .listen-option__art .word-art {
+    --art-size: 92px;
+  }
+}
+
+@media (max-width: 680px) {
+  .pack-card__art .word-art {
+    --art-size: 64px;
+  }
+
+  .word-card__art .word-art {
+    --art-size: 76px;
+  }
+
+  .word-modal__visual .word-art {
+    --art-size: 126px;
+  }
+
+  .discover-step__art .word-art {
+    --art-size: 176px;
+  }
+
+  .spell-step__art .word-art {
+    --art-size: 128px;
+  }
+
+  .listen-option__art .word-art {
+    --art-size: 76px;
+  }
+
+  .result-word-card__art .word-art {
+    --art-size: 48px;
+  }
+}
+
+@media (max-width: 400px) {
+  .word-card__art .word-art {
+    --art-size: 68px;
+  }
+
+  .discover-step__art .word-art {
+    --art-size: 155px;
+  }
+
+  .spell-step__art .word-art {
+    --art-size: 112px;
+  }
+
+  .listen-option__art .word-art {
+    --art-size: 66px;
+  }
+}
